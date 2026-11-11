@@ -1,16 +1,21 @@
 
-
+#imports
 import turtle as trtl
+import random as rand
+
 # draw screen
 wn = trtl.Screen()
-Mlist = []
+Mlist =[]
 wn.tracer(0)
 
 # import shapes
 hero_image = "Barbiesaur.gif"
 villain_image = "tripleT.gif"
 bg_image = "kidsbg.gif"
+win_image = "win.gif"
 
+
+wn.addshape(win_image)
 wn.addshape(hero_image)
 wn.addshape(villain_image)
 wn.addshape(bg_image)
@@ -32,58 +37,57 @@ Barbiedino = trtl.Turtle()
 Barbiedino.shape(hero_image)
 Barbiedino.penup()
 Barbiedino.goto(-500,-200)
-Barbiedino.stamp()
 
 #importing tripleT turtle
 tripleT = trtl.Turtle()
 tripleT.shape(villain_image)
 tripleT.penup()
 tripleT.goto(500,-100)
-tripleT.stamp()
 wn.update()
 
 
+# functions
 
 
 
+def ask_question():
+    global question_count
+    wn.onkeypress(None, "space")
+    
+    while question_count < 3:
+        question = rand.choice(question_list)
+        answer = wn.textinput("Question", question)
+        if answer is None:
+            answer = "No answer given."
+        Barbiedino.forward(230)
+        wn.update()
+        print(f"Q: {question} A: {answer}")
+        question_count += 1
+    else:
+        win()
+        
 
 
+def win():
+    global question, answer
+    wn.clear()
+    wn.bgpic(win_image)
+    lpainter = trtl.Turtle()
+    lpainter.penup()
+    lpainter.hideturtle()
+    lpainter.goto(-500, 200)
+    lpainter.pendown()
+    lpainter.write(f"Q: {question} A: {answer}", font=("Arial", 16, "normal"))
+    wn.update()
 
+#count the questions
+question_count = 0        
+wn.listen()       
+# press space to ask a question
+wn.onkeypress(ask_question, "space")
+    
 
-
-
-# press space for questions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+wn.update()
 
 wn.mainloop()
+
