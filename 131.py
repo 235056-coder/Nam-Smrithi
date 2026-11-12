@@ -31,6 +31,9 @@ wn.bgpic(bg_image)
 # list of questions
 question_list = ["What is your name?", "What is your favorite color?", "What is your favorite food?", "What is your favorite animal?", "What is your favorite thing to do?", "What is your favorite movie/show?", "What is your favorite book?", "What is your favorite sport?", "What is your favorite season?", "What is your favorite holiday?", "Do you like cake?", "What is your favorite icecream flavor?", "What is your favorite game?", "What is your dream vacation?", "What is your favorite fruit?", "Do you like veggies?"]
 
+# list of complitments
+compliment_list = ["You are awesome!", "You are amazing!", "You are fantastic!", "You are incredible!", "You are wonderful!", "You are the best!", "You are a superstar!", "You are a genius!", "You are a rockstar!", "You are a champion!", "You got this!", "Treat others well!", "Your so strong!"]
+
 
 #importing barbiedino turtle
 Barbiedino = trtl.Turtle()
@@ -75,9 +78,10 @@ def win():
     lpainter = trtl.Turtle()
     lpainter.penup()
     lpainter.hideturtle()
-    lpainter.goto(-500, 200)
+    lpainter.goto(85, 250)
+    lpainter.color("blue")
     lpainter.pendown()
-    lpainter.write(f"Q: {question} A: {answer}", font=("Arial", 16, "normal"))
+    lpainter.write(rand.choice(compliment_list), font=("Arial", 50, "bold"))
     wn.update()
 
 #count the questions
